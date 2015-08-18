@@ -124,7 +124,7 @@ class Container extends React.Component {
                     r18='';
             }
             
-            $.getJSON( 'http://api.neko.maid.tw/artwork.json?site=pixiv&tag=' + '*' + encodeURIComponent(state.query) + '*' +r18 +'&start='+results.length, function( res ) {
+            $.getJSON( 'http://api.neko.maid.tw/artwork.json?site=pixiv&tag=' + '*' + encodeURIComponent(state.query.split(' ').join('')) + '*' +r18 +'&start='+results.length, function( res ) {
                 getResults(res,function(){
                     passResults(results.length);
                 });
@@ -160,7 +160,7 @@ class Container extends React.Component {
                     r18='';
             }
             
-            $.getJSON( 'http://api.neko.maid.tw/artwork.json?site=pixiv&tag=' + '*' + encodeURIComponent(state.query) + '*' +r18 , function( res ) {
+            $.getJSON( 'http://api.neko.maid.tw/artwork.json?site=pixiv&tag=' + '*' + encodeURIComponent(state.query.split(' ').join('')) + '*' +r18 , function( res ) {
                 getResults(res,function(){
                     passResults(results.length);
                 });

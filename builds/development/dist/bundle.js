@@ -30715,7 +30715,7 @@
 	                        r18 = '';
 	                }
 
-	                _jquery2['default'].getJSON('http://api.neko.maid.tw/artwork.json?site=pixiv&tag=' + '*' + encodeURIComponent(state.query) + '*' + r18 + '&start=' + results.length, function (res) {
+	                _jquery2['default'].getJSON('http://api.neko.maid.tw/artwork.json?site=pixiv&tag=' + '*' + encodeURIComponent(state.query.split(' ').join('')) + '*' + r18 + '&start=' + results.length, function (res) {
 	                    getResults(res, function () {
 	                        passResults(results.length);
 	                    });
@@ -30746,7 +30746,7 @@
 	                        r18 = '';
 	                }
 
-	                _jquery2['default'].getJSON('http://api.neko.maid.tw/artwork.json?site=pixiv&tag=' + '*' + encodeURIComponent(state.query) + '*' + r18, function (res) {
+	                _jquery2['default'].getJSON('http://api.neko.maid.tw/artwork.json?site=pixiv&tag=' + '*' + encodeURIComponent(state.query.split(' ').join('')) + '*' + r18, function (res) {
 	                    getResults(res, function () {
 	                        passResults(results.length);
 	                    });

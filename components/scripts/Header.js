@@ -14,6 +14,7 @@ class Header extends React.Component {
 
     this._search = this._search.bind(this);
     this._onChange = this._onChange.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
 
   }
 
@@ -27,9 +28,13 @@ class Header extends React.Component {
   
 
 
-  _search (e) {
+  _handleKeyDown (e) {
     // only trigger search while user type enter
-    e.keyCode === 13 && emitter.emit('search', this.state);
+    e.keyCode === 13 && this._search();
+  }
+  
+  _search () {
+     emitter.emit('search', this.state);
   }
 
   _onChange (e) {
@@ -46,8 +51,8 @@ class Header extends React.Component {
           <h1>Pixearch</h1>
           
           <div id='pixsearch-searcharea'>
-            <input type="text" onKeyDown={this._search} onChange={this._onChange} placeholder="Key words..." autoFocus />
-             <i className={'icon search'}></i>
+            <input type="text" onKeyDown={this._handleKeyDown} onChange={this._onChange} placeholder="Key words..." autoFocus />
+             <i onClick={this._search} className={'icon search'}></i>
             <div id='pixsearch-filter'>
               
               <TriSelector id={'r18'} tag = {'R-18'} status = {['show only','including','don\'t show']} />

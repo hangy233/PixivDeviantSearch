@@ -14,7 +14,7 @@ let msg = {
   loading: {
     headerMsg: 'Just one second',
     iconColor: 'black',
-    icon: 'notched circle loading',
+    icon: 'asterisk loading ',
     bodyMsg: 'Fetching data......'
   },
   noContent: {
@@ -167,34 +167,7 @@ class Container extends React.Component {
                 
             });
             
-            
-            // $.ajax({
-            //     type: "GET",
-            //     url: "http://backend.deviantart.com/rss.xml?type=deviation&q=boost%3Apopular+" + encodeURIComponent(state.query) ,
-            //     dataType: "xml",
-            //     success: xmlParser
-            //   });
-            
-            
-            // function xmlParser(xml) {
-                
-            //     $(xml).find("item").each(function () {
-            //         results.push({
-            //             thumb: $(this).find("media:thumbnail").eq(2).text(),
-            //             bigurl: $(this).find("media:content").text(),
-            //             title: $(this).find("title").text(),
-            //             url: $(this).find("link").text()
-            //         });
-                    
-            //      });
-                
-            //     that.setState({
-            //             res: results,
-            //             msgInfo: $(xml).find("item").length()!==0 ? false : msg.noContent
-            //         });
-            
-            // }    
-            
+    
             
         });
 
@@ -211,6 +184,10 @@ class Container extends React.Component {
 
     }
     
+    
+    _scrollTop() {
+        window.scrollTo(0, 0);
+    }
   
     render () {
 
@@ -218,6 +195,8 @@ class Container extends React.Component {
             <div id="pixsearch-container">
                 <List  res={this.state.res} />
                 <Message msgInfo={this.state.msgInfo} />
+                
+                <i onClick={this._scrollTop} className="caret up icon"></i>
 
             </div>
         );

@@ -11,14 +11,19 @@ class List extends React.Component {
       let res = this.props.res;
         
       for (let result of res) {
-        nodes.push(<img src={result.url}  />);
+        nodes.push(
+          <div id='pixsearch-item'>
+            <img src={result.bigurl} width={200} />
+            <a href={result.url}> {result.title}</a>
+          </div>
+          );
       }
     }
     //console.log(res);
 
 
     return (
-      <div className="ui link cards">
+      <div id='pixsearch-list'>
         {nodes}
       </div>
     );

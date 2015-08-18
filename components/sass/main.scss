@@ -1,3 +1,193 @@
+$pixivBlue: #1192CE;
+
+@mixin flexDisplay() {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+
+@mixin flexDirection($dir) {
+    -webkit-flex-direction: $dir;
+    flex-direction: $dir;
+}
+
+@mixin flexAlignItems($align) {
+    -webkit-align-items: $align; /* Safari 6.1+ */
+    align-items: $align;
+}
+
+@mixin transitionDuration($duration){
+    -webkit-transition-duration: $duration; /* Safari */
+    transition-duration: $duration;
+}
+
+@mixin transformy($off){
+    transform:translateY($off);
+    -ms-transform:translateY($off); 	/* IE 9 */
+    -moz-transform:translateY($off); 	/* Firefox */
+    -webkit-transform:translateY($off); /* Safari 和 Chrome */
+    -o-transform:translateY($off); 	
+}
+
+@mixin flexShrink($shrink){
+    -webkit-flex-shrink: $shrink; 
+    flex-shrink: $shrink;
+}
+
+@mixin flexWrap($wrap){
+     -webkit-flex-wrap: $wrap; /* Safari 6.1+ */
+    flex-wrap: $wrap;
+}
+
+@mixin flexJustifyContents($jc){
+    -webkit-justify-content: $jc; /* Safari 6.1+ */
+    justify-content: $jc;
+}
+
+
 html, body{
-    background-color: grey;
+    background-color: #2B2B2B;
+}
+a, a:hover, a:focus , a:active, a:visited{
+    text-decoration:none;
+    color:white;
+}
+
+#pixiv-search {
+    max-width:1000px;
+    margin:auto;
+    padding-top: 7px;
+    
+    #pixsearch-header{
+        h1{
+            min-height: 1rem;
+            font-size: 4rem;
+            margin-bottom: -4px;
+            color:$pixivBlue;
+        }
+        #pixsearch-searcharea{
+            @include flexDisplay;
+            @include flexAlignItems(center);
+            
+            >input{
+                height: 50px;
+                width: 500px;
+                padding: 10px;
+                font-size: 20px;
+                border: 0;
+                background-color: #424242;
+                color: white;
+                outline-width: 0px;
+                
+            }
+            #pixsearch-filter{
+                @include flexShrink(0);
+                margin-left:35px;
+            }
+            .search{
+                font-size: 61px;
+                position: relative;
+                height: 60px;
+                left: -70px;
+                top: 17px;
+                color: #2B2B2B;
+                margin-right: -73px;
+            }
+        }
+    }
+    
+    #pixsearch-container{
+        margin-top:20px;
+        
+        #pixsearch-list{
+            @include flexDisplay;
+            @include flexWrap(wrap);
+            @include flexAlignItems(center); 
+            @include flexJustifyContents(space-around);
+            
+            #pixsearch-item{
+                @include flexDisplay;
+                @include flexDirection(column);
+                @include flexAlignItems(center); 
+                font-weight:bold;
+                margin: 10px;
+            }
+        }
+    }
+}
+
+
+.triSelector {
+    @include flexDisplay;
+    @include flexAlignItems(center);
+    height:60px;
+    font-weight:bold;
+    padding: 0px 7px;
+    color:white;
+    
+    >div:nth-child(1){
+        @include flexDisplay;
+        @include flexDirection(column);
+        @include transitionDuration(0s);
+
+        
+        span{
+            @include transitionDuration(0s);
+            
+            text-align: center;
+            height:20px;
+
+            &:nth-child(1),&:nth-child(5){
+                opacity:0;
+            }
+            &:nth-child(2),&:nth-child(4){
+                opacity:0.5;
+            }
+            &:nth-child(3){
+                opacity:1;
+            }
+        }
+        
+        &.moveUp{
+            @include transitionDuration(1s);
+            @include transformy(-20px);
+            
+            span{
+                @include transitionDuration(1s);
+                &:nth-child(1),&:nth-child(2){
+                    opacity:0;
+                }
+                &:nth-child(3),&:nth-child(5){
+                    opacity:0.5;
+                }
+                &:nth-child(4){
+                    opacity:1;
+                }
+            }
+        }
+        &.moveDown{
+            @include transitionDuration(1s);
+            @include transformy(20px);
+            
+            span{
+                @include transitionDuration(1s);
+
+                &:nth-child(4),&:nth-child(5){
+                    opacity:0;
+                }
+                &:nth-child(1),&:nth-child(3){
+                    opacity:0.5;
+                }
+                &:nth-child(2){
+                    opacity:1;
+                }
+            }
+        }
+    }
+    >div:nth-child(2){
+        margin-left:7px;
+        color: #AB3849;
+    }
+    
+    
+    
 }
